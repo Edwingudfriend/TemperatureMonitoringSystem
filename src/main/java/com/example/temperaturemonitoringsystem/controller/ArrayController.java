@@ -28,6 +28,7 @@ public class ArrayController {
     public ArrayController(ArrayService arrayService) {
         this.arrayService = arrayService;
     }
+    //simpler
     //simple
     // 1D Array endpoint
     @PostMapping("/temperature")
