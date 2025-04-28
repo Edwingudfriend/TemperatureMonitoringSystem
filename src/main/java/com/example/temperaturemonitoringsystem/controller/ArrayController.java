@@ -28,7 +28,7 @@ public class ArrayController {
     public ArrayController(ArrayService arrayService) {
         this.arrayService = arrayService;
     }
-
+    //simple
     // 1D Array endpoint
     @PostMapping("/temperature")
     public ResponseEntity<?> analyzeTemperatures(@RequestBody double[] temperatures) {
