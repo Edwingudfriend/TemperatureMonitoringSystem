@@ -40,13 +40,31 @@ public class ArrayController {
     }
     /**
      * Transposes a given matrix (swaps rows with columns)
-     * @param matrix 2D integer array representing the matrix to transpose
+
      * @return Transposed matrix
      * @throws  if input is not a valid matrix
      */
     // 2D Array endpoint
     @PostMapping("/transpose")
-    public int[][] transposeMatrix(@RequestBody int[][] matrix) {
-        return arrayService.transposeMatrix(matrix);
+    public ResponseEntity<?> transposeMatrix(@RequestBody MatrixWrapper matrixWrapper) {
+        try {
+            return ResponseEntity.ok(arrayService.transposeMatrix(matrixWrapper.getMatrix()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    /**
+     * Wrapper class for matrix input to handle JSON parsing properly
+     */
+    public static class MatrixWrapper {
+        private int[][] matrix;
+
+        public int[][] getMatrix() {
+            return matrix;
+        }
+
+        public void setMatrix(int[][] matrix) {
+            this.matrix = matrix;
+        }
     }
 }
